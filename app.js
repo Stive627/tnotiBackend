@@ -1,0 +1,17 @@
+const express = require('express')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+const routerConnexion = require('./routers/connexionRoute')
+const routerVerificationCode = require('./routers/verificationCode')
+require('dotenv').config()
+const port = process.env.PORT || 3001  
+const app = express()
+const uri = process.env.URI
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
+app.use('/connexion', routerConnexion)
+app.use('/profile')
+app.use ('/', routerVerificationCode)
+mongoose.connect(uri, {dbName:'tnoti'}).then(()=>console.log('Connected to mongodb')).catch((err) =>console.log(`An error occured\n${err}`))
+app.get('/', (req, res)=>res.send('application set up'))
+app.listen(port, ()=> console.log(`The app is running at http://localhost:${port}`))
