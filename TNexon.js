@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt')
-
-
+const multer = require('multer')
 const tmail = (email, password, destEmail, subject, html) =>{ 
 
     var transporter = nodemailer.createTransport({
