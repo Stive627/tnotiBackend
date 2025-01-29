@@ -8,7 +8,7 @@ async function addImage(req, res){
     if(req.file.profile){
         fs.unlink(req.body.profile, function(err){
             if(err){
-                return   res.status(400).send(`An error occured\n${err}`)
+                return res.status(400).send(`An error occured\n${err}`)
                 }
     })}
     await profileModel.updateOne({_id:req.user._id}, {image:req.file.path})
@@ -29,4 +29,13 @@ async function updateProfile(req, res) {
     }
     await profileModel.updateOne({_id:req.params.id}, {...req.body})
 }
-module.exports = {addImage, createProfile, updateProfile}
+const setWalkthroughDigital = async (req, res) => {
+    try {
+        const profile = await profileModel.findOneAndUpdate({user:req.user_id},{walkthroughdigital:true})
+        res.status(200).send(profile)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+
+}
+module.exports = {addImage, createProfile, updateProfile, setWalkthroughDigital}

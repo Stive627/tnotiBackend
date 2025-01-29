@@ -2,7 +2,7 @@ const express = require('express')
 const profilerouter = express.Router()
 const jwt = require('jsonwebtoken')
 const multer = require('multer')
-const { addImage, createProfile, updateProfile } = require('../controllers/profile')
+const { addImage, createProfile, updateProfile, setWalkthroughDigital } = require('../controllers/profile')
 require('dotenv').config()
 
 const storage = multer.diskStorage({
@@ -33,4 +33,5 @@ const upload = multer({storage:storage})
 profilerouter.post('/addImage',authRoute, upload.single('profile'), addImage)
 profilerouter.post('/create', authRoute, createProfile)
 profilerouter.post('/updateProfile', authRoute, updateProfile)
+profilerouter.post('/walkthroughdigital',setWalkthroughDigital)
 module.exports = profilerouter

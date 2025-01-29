@@ -5,6 +5,7 @@ const profileSchema = new Schema({
     dob:{type:String, required:true},
     plan:{type:String, required:true},
     picture:{type:String, required:false},
+    walkthroughdigital:{type:Boolean, required:false, default:false},
     user:{type:Schema.Types.ObjectId, ref:'user', required:true}
 }, {timestamps:true})
 const profileModel = mongoose.model('profile', profileSchema)

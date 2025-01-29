@@ -63,4 +63,6 @@ const passwordChange = async (req, res) => {
     .catch((reason)=>res.send(`An error occured. \nThe reason is ${reason}`)) 
 }
 
+
+
 module.exports = {register, login, passwordRecovery, passwordChange}

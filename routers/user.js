@@ -1,5 +1,5 @@
 const express = require('express')
-const { register, login, passwordRecovery, passwordChange } = require('../controllers/user')
+const { register, login, passwordRecovery, passwordChange} = require('../controllers/user')
 const routeruser = express.Router()
 routeruser.post('/register', register)
 routeruser.post('/login', login)
